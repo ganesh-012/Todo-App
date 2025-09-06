@@ -1,0 +1,46 @@
+const mongoose = require('mongoose');
+
+const userSchema = new mongoose.Schema({
+    username : {
+        type : String,
+        required: true
+    },
+    password : {
+        type : String,
+        required : true
+    }
+})
+
+const User = mongoose.model('User',userSchema);
+
+const todoSchema = new mongoose.Schema({
+    title : {
+        type : String,
+        required : true
+    },
+    description : {
+        type : String,
+        required : true
+    },
+    userId : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "User",
+        required : true
+    },
+    createdAt: {
+       type: Date,
+       default: Date.now
+    },
+    completed : {
+        type : Boolean,
+        default : false
+    }
+    
+})
+
+const Todo = mongoose.model('Todo',todoSchema);
+
+module.exports = {
+    User,
+    Todo
+}
