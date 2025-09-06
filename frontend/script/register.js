@@ -14,11 +14,13 @@ async function registerUser() {
           body: JSON.stringify({ username, password }) 
         });
 
+        const data = await response.json();
         if (response.status === 200) {
-          alert("User registered successfully");
-          window.location.href = "file:///C:/Users/pandr/OneDrive/Desktop/0-100%20Development/TODO-APP/frontend/dashboard.html"; 
+          alert(data.msg);
+          const token = data.token
+          localStorage.setItem("token",token);
+          window.location.href ='http://127.0.0.1:5500/TODO-APP/frontend/dashboard.html'
         } else {
-          const data = await response.json();
           alert(data.msg || "Registration failed");
         }
       } catch (error) {

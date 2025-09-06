@@ -39,7 +39,8 @@ router.post('/register', async (req, res) => {
       password: hashedPassword,
     });
 
-    return res.status(201).json({ msg: "User registered successfully" });
+    const token = jwt.sign({ username }, JWT_SECRET)
+    return res.status(200).json({ msg: "User registered successfully", token });
 
   } catch (err) {
     console.error(err);

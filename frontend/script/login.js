@@ -19,7 +19,7 @@ async function loginUser() {
                 const token = data.token;
                 console.log(token);
                 localStorage.setItem("token",token);
-                window.location.href = 'file:///C:/Users/pandr/OneDrive/Desktop/0-100%20Development/TODO-APP/frontend/dashboard.html'
+                window.location.href ='http://127.0.0.1:5500/TODO-APP/frontend/dashboard.html'
             }else{
                 const data = await response.json();
                 alert(data.msg || 'login faild')
